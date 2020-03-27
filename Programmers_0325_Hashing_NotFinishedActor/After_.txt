@@ -1,0 +1,109 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//@ Programeers - 2020 / 03 / 26
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// * 문제 - Hashing.
+- 문제이름 : 완료하지 못한 선수.
+
+수많은 마라톤 선수들이 마라톤에 참여하였습니다. 단 한 명의 선수를 제외하고는 모든 선수가 마라톤을 완주하였습니다.
+
+마라톤에 참여한 선수들의 이름이 담긴 배열 participant와 완주한 선수들의 이름이 담긴 배열 completion이 주어질 때,
+완주하지 못한 선수의 이름을 return 하도록 solution 함수를 작성해주세요.
+
+제한사항
+마라톤 경기에 참여한 선수의 수는 1명 이상 100,000명 이하입니다.
+completion의 길이는 participant의 길이보다 1 작습니다.
+참가자의 이름은 1개 이상 20개 이하의 알파벳 소문자로 이루어져 있습니다.
+참가자 중에는 동명이인이 있을 수 있습니다.
+
+
+participant	completion															return
+[leo, kiki, eden]	[eden, kiki]												leo
+[marina, josipa, nikola, vinko, filipa]	[josipa, filipa, marina, nikola]		vinko
+[mislav, stanko, mislav, ana]	[stanko, ana, mislav]							mislav
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// * 해결 방법
+
+직접 해싱을 구현.
+
+struct Hash {... Hash* NextPtr = nulltpr };
+Hash Hash_vec[MAX_HASH];
+
+1. GetKey(string str)
+- 문자열의 각 문자를 아스키코드 값으로 변환 후, 모두 더한 값이 Key.
+
+2. MakeHash(string str)
+- GetKey 로 Key 값 구하고, 해당 지역에 Insert, 만약 데이터가 존재한다면 LinkedList 로 NextPtr 에 연결.
+
+3. Hash* FindHash(string str)
+- 해당 하는 str 의 Hash* 를 넘김.
+
+4. Main 에서 처리. Count ++, --
+
+5. 완주자 목록을 먼저 해쉬로 만들고, 참가자 목록을 FindHash 로 찾는 방식 으로 접근.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// * 시행착오
+
+MakeHash 에서 while(Nextpr) {} 부분 끝나고,
+Head->NextHash = Insert; 해야되는데,
+NextPtr = Insert 해버림; 조심하자.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// * 느낀점
+한줄 한줄씩 코드를 보자.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// * 다른 코드
+
+* std::map Hash 를 사용해서 푼 방법.
+string solution(vector<string> participant, vector<string> completion) {
+    string answer = "";
+    unordered_multiset<string> names;
+
+    for(int i = 0; i < participant.size(); i++)
+    {
+        names.insert(participant[i]);
+    }
+
+    for(int i = 0; i < completion.size(); i++)
+    {
+        unordered_multiset<string>::iterator itr = names.find(completion[i]);
+        names.erase(itr);
+    }
+
+    return *names.begin();
+}
+
+
+* 정렬로 푼 방법
+string solution(vector<string> participant, vector<string> completion) {
+
+    string answer = "";
+    sort(participant.begin(), participant.end());
+    sort(completion.begin(), completion.end());
+    for(int i=0;i<participant.size();i++)
+    {
+        if(i == participant.size()-1)
+        {
+            answer = participant[i];
+            break;
+        }
+        if(participant[i] != completion[i])
+        {
+            answer = participant[i];
+            break;
+        }
+    }
+    return answer;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
