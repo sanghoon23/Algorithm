@@ -1,0 +1,6 @@
+﻿  ConsoleApplication1_Test.cpp
+d:\visual2017\_algorithm_minetest\programmers_1007_matchingscore\consoleapplication1_test\consoleapplication1_test.cpp(45): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\visual2017\_algorithm_minetest\programmers_1007_matchingscore\consoleapplication1_test\consoleapplication1_test.cpp(52): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\visual2017\_algorithm_minetest\programmers_1007_matchingscore\consoleapplication1_test\consoleapplication1_test.cpp(62): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\visual2017\_algorithm_minetest\programmers_1007_matchingscore\consoleapplication1_test\consoleapplication1_test.cpp(79): warning C4267: '+=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ConsoleApplication1_Test.vcxproj -> D:\visual2017\_Algorithm_MineTest\Programmers_1007_MatchingScore\Debug\ConsoleApplication1_Test.exe
