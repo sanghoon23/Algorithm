@@ -7,8 +7,14 @@
 
 using namespace std;
 
-int Alpha[26] = { 0, };
-long long Continus[26][300001];
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//@1019_ 속도 빠르게 수정.
+/*
+목적은 같지만, 순서를 어떻게 배치하냐에 따라서 속도가 확연하게 갈릴 수 있다.
+*/
+
+int Alpha[26] = { 0, }; // 총 갯수
+long long Continus[26][300001]; // 연속된 갯수
 long long Calc[300001] = { 0, };
 
 long long Sum(long long N)
@@ -25,13 +31,74 @@ long long solution(string S)
 {
 	Calc[1] = 1;
 	long long Answer = 0;
-	for (int i = 1; i < S.size(); ++i)
-		Answer += Sum(i);
-
 
 	long long Count = 1;
 	for (int i = 0; i < S.size(); ++i)
 	{
+		Answer += Sum(i); //총합.
+		if (Count >= S.size()) return 0;
+
+		Alpha[S[i] - 'a'] += 1;
+		if (i != S.size() - 1)
+		{
+			if (S[i] == S[i + 1])
+			{
+				++Count;
+				continue;
+			}
+		}
+
+		int Loop = Count;
+		while (--Loop >= 0)
+		{
+			Continus[S[i] - 'a'][Loop] += Count - Loop;
+		}
+
+		Count = 1;
+	}
+
+	for (int i = 0; i < 26; ++i)
+	{
+		if (Alpha[i] <= 1) continue;
+
+		for (int j = 0; j < Alpha[i]; ++j)
+		{
+			Answer -= Sum(Continus[i][j] - 1);
+		}
+	}
+
+	return Answer;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//@1019 _ 이전 코드.
+/*
+위의 코드와 비교해보자.
+*/
+
+//int Alpha[26] = { 0, };
+//long long Continus[26][300001];
+//long long Calc[300001] = { 0, };
+
+//long long Sum(long long N)
+//{
+//	if (N < 1) return 0;
+//	if (N == 1) return 1;
+//	if (Calc[N] != 0) return Calc[N];
+//
+//	Calc[N] = N + Sum(N - 1);
+//	return Calc[N];
+//}
+
+long long solution4(string S)
+{
+	Calc[1] = 1;
+	long long Answer = 0;
+
+	long long Count = 1;
+	for (int i = 0; i < S.size(); ++i)
+	{
+		Answer += Sum(i);
 		if (Count >= S.size()) return 0;
 
 		Alpha[S[i] - 'a'] += 1;
@@ -51,12 +118,10 @@ long long solution(string S)
 	for (int i = 0; i < 26; ++i)
 	{
 		if (Alpha[i] <= 1) continue;
-
-		int Size = Alpha[i];
 		for (int j = 0; j < Alpha[i]; ++j)
 		{
 			long long Num = 0;
-			for (int s = j + 1; s <= Alpha[i]; ++s) //@ <= Size 까지 해줘야함.
+			for (int s = j + 1; s <= Alpha[i]; ++s)
 			{
 				Num += (long long)(s - j) * Continus[i][s];
 			}
@@ -68,6 +133,7 @@ long long solution(string S)
 
 	return Answer;
 }
+////////////////////////////////////////////////////////
 
 //using ll = long long;
 //
@@ -113,6 +179,10 @@ long long solution(string S)
 //	return max(ans, (ll)0);
 //}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//@다른 분이 짜신건데 너무 어렵다..
+//또한, 제일 위의 코드가 더 빠르다.
+
 typedef long long int ll;
 typedef pair<int, int> pii;
 #define NM 300005
@@ -121,9 +191,9 @@ typedef pair<int, int> pii;
 
 long long dy[26], cnt[26], idx[30], alpha[NM], l[NM], r[NM];
 long long tree[26][NM * 2][2], B;
-void Update(int c, int idx, int v) {
+void Update(int c, int idx, int v) { //@c - S[i-1]
 	idx += B;
-	tree[c][idx][0]++;
+	tree[c][idx][0]++; //같은 문자가 몇개있는지 (+=B)
 	tree[c][idx][1] += v;
 	idx /= 2;
 	while (idx) {
@@ -132,13 +202,23 @@ void Update(int c, int idx, int v) {
 		idx /= 2;
 	}
 }
-pair<ll, ll> Find(int c, int l, int r) {
+pair<ll, ll> Find(int c, int l, int r) { //@c - 현재 문자, l - 1, r - same + 1
 	l += B, r += B;
 	ll res = 0, res2 = 0;
 	while (l <= r) {
-		if (l & 1) res += tree[c][l][0], res2 += tree[c][l][1], l++;
-		if (!(r & 1)) res += tree[c][r][0], res2 += tree[c][r][1], r--;
-		l >>= 1, r >>= 1;
+		if (l & 1) // 홀수라면
+		{
+			res += tree[c][l][0];
+			res2 += tree[c][l][1];
+			l++;
+		}
+		if (!(r & 1)) // 홀수가 아니라면
+		{
+			res += tree[c][r][0];
+			res2 += tree[c][r][1];
+			r--;
+		}
+		l >>= 1, r >>= 1; // 오른쪽 1칸 이동 후 할당
 	}
 	return { res,res2 };
 }
@@ -201,7 +281,9 @@ int main()
 	//string S = "abccccc"; // 36
 	//string S = "cabcccc"; // 42
 	//string S = "acbcccc"; // 42
-	string S = "ccabccc"; // 43
+	//string S = "ccabccc"; // 43
+
+	string S = "cccabcc";
 	long long Result = solution(S);
 
 	return 0;
