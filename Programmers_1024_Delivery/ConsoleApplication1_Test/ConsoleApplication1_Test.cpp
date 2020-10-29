@@ -326,36 +326,67 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //@DFS
 
+//int Temp[51][51] = { 0, };
+//bool Visited[51] = { false, }; /* 굳이 2차원으로 쓸 필요없다. */
+//int CheckNode[51] = { 0, };
+//
+//void DFS(int Index, int Dist, int N, int K)
+//{
+//	for (int j = 1; j <= N; ++j)
+//	{
+//		if (Index == j) continue;
+//		if (Temp[Index][j] == 0) continue;
+//		if (Visited[j] == false)
+//		{
+//			Visited[j] = true;
+//			(CheckNode[j] != 0)
+//				? CheckNode[j] = min(CheckNode[j], Dist + Temp[Index][j])
+//				: CheckNode[j] = Dist + Temp[Index][j];
+//			DFS(j, Dist + Temp[Index][j], N, K);
+//		}
+//		else //@이미 방문했을 때,
+//		{
+//			if (Dist + Temp[Index][j] > K) continue;
+//			if (CheckNode[j] > Dist + Temp[Index][j])
+//			{
+//				CheckNode[j] = Dist + Temp[Index][j];
+//				DFS(j, Dist + Temp[Index][j], N, K);
+//			}
+//		}
+//	}
+//}
+//
+//int solution(int N, vector<vector<int> > Road, int K)
+//{
+//	for (int j = 0; j < Road.size(); ++j)
+//	{
+//		if (Temp[Road[j][0]][Road[j][1]] != 0)
+//		{
+//			Temp[Road[j][0]][Road[j][1]] = min(Temp[Road[j][0]][Road[j][1]], Road[j][2]);
+//			Temp[Road[j][1]][Road[j][0]] = Temp[Road[j][0]][Road[j][1]];
+//		}
+//		else
+//		{
+//			Temp[Road[j][0]][Road[j][1]] = Road[j][2];
+//			Temp[Road[j][1]][Road[j][0]] = Road[j][2];
+//		}
+//	}
+//
+//	DFS(1, 0, N, K);
+//
+//	int Result = 0;
+//	for (int i = 2; i <= N; ++i)
+//	{
+//		if (CheckNode[i] <= K && CheckNode[i] != 0) ++Result;
+//	}
+//	return Result + 1;
+//}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//@다익스트라 (우선순위 큐 활용)
+
 int Temp[51][51] = { 0, };
-bool Visited[51] = { false, }; /* 굳이 2차원으로 쓸 필요없다. */
 int CheckNode[51] = { 0, };
-
-void DFS(int Index, int Dist, int N, int K)
-{
-	for (int j = 1; j <= N; ++j)
-	{
-		if (Index == j) continue;
-		if (Temp[Index][j] == 0) continue;
-		if (Visited[j] == false)
-		{
-			Visited[j] = true;
-			(CheckNode[j] != 0)
-				? CheckNode[j] = min(CheckNode[j], Dist + Temp[Index][j])
-				: CheckNode[j] = Dist + Temp[Index][j];
-			DFS(j, Dist + Temp[Index][j], N, K);
-		}
-		else //@이미 방문했을 때,
-		{
-			if (Dist + Temp[Index][j] > K) continue;
-			if (CheckNode[j] > Dist + Temp[Index][j])
-			{
-				CheckNode[j] = Dist + Temp[Index][j];
-				DFS(j, Dist + Temp[Index][j], N, K);
-			}
-		}
-	}
-}
-
 int solution(int N, vector<vector<int> > Road, int K)
 {
 	for (int j = 0; j < Road.size(); ++j)
@@ -372,15 +403,44 @@ int solution(int N, vector<vector<int> > Road, int K)
 		}
 	}
 
-	DFS(1, 0, N, K);
+	//priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> PQ;
+	queue<pair<int, int>> PQ;
+	/*
+	그냥 Que 를 쓰는 것과 우선순위 큐를 쓰는 것이 무슨 차이가 있을까??
+	지금은 딱히 차이를 보이지 않는다.
+	그냥 Que 를 써도 결국엔 다 돌면서 조건에 걸리면서 스킵되고
+	우선순위를 쓰면 빠르게 CheckNode[j]의 최솟값을 선점할 수는 있지만, 우선순위에 맞게 정렬하는 비용이 든다.
+	프로그래머스에서 속도 비교 결과, 차이가 거의 없다. 오히려 그냥 Que 를 쓴 게 약간 더 빠르다.
+
+	여기서 중요한 것은 위 BFS,DFS 처럼 Visisted 를 쓸 필요가 없다는 것이다.
+	(방문으로의 조건) Visisted 를 쓴다면 1. 방문하지 않았을 때, 2. 방문했을 때, 두가지를 나눠서 또 계산해주어야 한다.
+	*/
+	PQ.push({ 1, 0 });
+	while (!PQ.empty())
+	{
+		pair<int, int> Poped = PQ.front();
+		int PopFirst = Poped.first, PopSecond = Poped.second;
+		PQ.pop();
+		for (int j = 1; j <= N; ++j)
+		{
+			if (Temp[PopFirst][j] == 0) continue;
+			if (Temp[PopFirst][j] + PopSecond < CheckNode[j] || CheckNode[j] == 0)
+			{
+				CheckNode[j] = Temp[PopFirst][j] + PopSecond;
+				PQ.push({ j, Temp[PopFirst][j] + PopSecond });
+			}
+		}
+	}
 
 	int Result = 0;
-	for (int i = 2; i <= N; ++i)
+	for (int j = 2; j <= N; ++j)
 	{
-		if (CheckNode[i] <= K && CheckNode[i] != 0) ++Result;
+		if (CheckNode[j] != 0 && CheckNode[j] <= K) ++Result;
 	}
+
 	return Result + 1;
 }
+
 
 int main()
 {
