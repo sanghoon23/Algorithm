@@ -7,6 +7,37 @@
 
 using namespace std;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//@백트래킹 - 근본적으로 시간을 줄이는 방법
+
+//int Answer = 0;
+//int Left[100001] = { 0, };
+//int Stright[100001] = { 0, };
+//int Right[100001] = { 0, };
+//
+//void DFS(int N, pair<int, int> Curr, int QueenCount)
+//{
+//	if (Left[(N + Curr.first - Curr.second)] || Stright[Curr.second] || Right[(Curr.first + Curr.second)]) return;
+//	if (QueenCount >= N) { ++Answer; return; }
+//
+//	Left[(N + Curr.first - Curr.second)] = Stright[Curr.second] = Right[(Curr.first + Curr.second)] = 1;
+//
+//	for (int i = 1; i <= N; ++i)
+//		DFS(N, { Curr.first + 1, i }, QueenCount + 1);
+//
+//	Left[(N + Curr.first - Curr.second)] = Stright[Curr.second] = Right[(Curr.first + Curr.second)] = 0;
+//}
+//
+//int solution(int N)
+//{
+//	for (int i = 1; i <= N; ++i)
+//		DFS(N, { 1, i }, 1);
+//
+//	return Answer;
+//}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//@DFS (최대한 시간 줄이는 방법)
 int Answer = 0;
 pair<int, int> Dir[3] = { {-1, -1}, {-1, 1}, {-1, 0} };
 
@@ -28,22 +59,24 @@ bool Find(int N, pair<int, int> Curr, vector<vector<bool>> Visited)
 	return true;
 }
 
-void DFS(int N, vector<vector<bool>> Visited, pair<int, int> Curr, int QueenCount)
+void DFS(int N, vector<vector<bool>>& Visited, pair<int, int> Curr, int QueenCount)
 {
+	if (Find(N, { Curr.first, Curr.second }, Visited) == false) return;
+
 	if (QueenCount >= N)
 	{
 		++Answer;
 		return;
 	}
 
+	Visited[Curr.first][Curr.second] = true;
+
 	for (int i = 0; i < N; ++i)
 	{
-		if (Visited[Curr.first][i] == true) continue;
-		if (Find(N, { Curr.first, i }, Visited) == false) continue;
-		Visited[Curr.first][i] = true;
 		DFS(N, Visited, { Curr.first + 1, i }, QueenCount + 1);
-		Visited[Curr.first][i] = false;
 	}
+
+	Visited[Curr.first][Curr.second] = false;
 }
 
 int solution(int N)
@@ -51,8 +84,7 @@ int solution(int N)
 	for (int i = 0; i < N; ++i)
 	{
 		vector<vector<bool>> Visit(N, vector<bool>(N, false));
-		Visit[0][i] = true;
-		DFS(N, Visit, { 1, i }, 1);
+		DFS(N, Visit, { 0, i }, 1);
 	}
 
 	return Answer;
@@ -99,7 +131,7 @@ int solution(int N)
 
 int main()
 {
-
+	int Result = solution(4);
 	return 0;
 }
 
