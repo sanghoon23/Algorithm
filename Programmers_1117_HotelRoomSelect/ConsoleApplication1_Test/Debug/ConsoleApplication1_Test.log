@@ -1,0 +1,22 @@
+﻿  ConsoleApplication1_Test.cpp
+d:\visual2017\_algorithm_minetest\programmers_1117_hotelroomselect\consoleapplication1_test\consoleapplication1_test.cpp(15): warning C4244: '인수': '_Ty'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=__int64
+          ]
+d:\visual2017\_algorithm_minetest\programmers_1117_hotelroomselect\consoleapplication1_test\consoleapplication1_test.cpp(16): warning C4244: 'return': '_Ty'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=__int64
+          ]
+d:\visual2017\_algorithm_minetest\programmers_1117_hotelroomselect\consoleapplication1_test\consoleapplication1_test.cpp(36): warning C4244: '=': '_Ty'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=__int64
+          ]
+d:\visual2017\_algorithm_minetest\programmers_1117_hotelroomselect\consoleapplication1_test\consoleapplication1_test.cpp(44): warning C4244: '인수': '_Ty'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=__int64
+          ]
+  ConsoleApplication1_Test.vcxproj -> D:\visual2017\_Algorithm_MineTest\Programmers_1117_HotelRoomSelect\Debug\ConsoleApplication1_Test.exe
