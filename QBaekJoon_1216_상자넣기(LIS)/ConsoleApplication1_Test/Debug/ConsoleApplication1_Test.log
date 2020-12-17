@@ -1,0 +1,4 @@
+﻿  pch.cpp
+  ConsoleApplication1_Test.cpp
+d:\visual2017\_algorithm_minetest\baekjoon_1216_상자넣기\consoleapplication1_test\consoleapplication1_test.cpp(22): warning C4244: '초기화 중': '__int64'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ConsoleApplication1_Test.vcxproj -> D:\visual2017\_Algorithm_MineTest\BaekJoon_1216_상자넣기\Debug\ConsoleApplication1_Test.exe
