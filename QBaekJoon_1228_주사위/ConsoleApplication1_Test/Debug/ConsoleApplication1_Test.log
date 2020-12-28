@@ -1,0 +1,29 @@
+﻿  ConsoleApplication1_Test.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xutility(2903): warning C4244: '=': 'const _Ty'에서 '_Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              _Ty=__int64
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xutility(2917): note: 컴파일 중인 함수 템플릿 인스턴스화 'void std::_Fill_unchecked1<_FwdIt,_Ty>(_FwdIt,_FwdIt,const _Ty &,std::false_type)'에 대한 참조를 확인하십시오.
+          with
+          [
+              _FwdIt=__int64 *,
+              _Ty=double
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xutility(2925): note: 컴파일 중인 함수 템플릿 인스턴스화 'void std::_Fill_unchecked<_Ty*,double>(_FwdIt,_FwdIt,const double &)'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Ty=__int64,
+              _FwdIt=__int64 *
+          ]
+  d:\visual2017\_algorithm_minetest\baekjoon_1228_주사위\consoleapplication1_test\consoleapplication1_test.cpp(10): note: 컴파일 중인 함수 템플릿 인스턴스화 'void std::fill<__int64*,double>(_FwdIt,_FwdIt,const _Ty &)'에 대한 참조를 확인하십시오.
+          with
+          [
+              _FwdIt=__int64 *,
+              _Ty=double
+          ]
+  ConsoleApplication1_Test.vcxproj -> D:\visual2017\_Algorithm_MineTest\BaekJoon_1228_주사위\Debug\ConsoleApplication1_Test.exe
