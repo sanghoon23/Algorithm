@@ -1,0 +1,6 @@
+﻿  ConsoleApplication1_Test.cpp
+d:\visual2017\_algorithm_minetest\baekjoon_210115_도미노(scc)\consoleapplication1_test\consoleapplication1_test.cpp(44): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\visual2017\_algorithm_minetest\baekjoon_210115_도미노(scc)\consoleapplication1_test\consoleapplication1_test.cpp(45): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\visual2017\_algorithm_minetest\baekjoon_210115_도미노(scc)\consoleapplication1_test\consoleapplication1_test.cpp(46): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\visual2017\_algorithm_minetest\baekjoon_210115_도미노(scc)\consoleapplication1_test\consoleapplication1_test.cpp(47): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ConsoleApplication1_Test.vcxproj -> D:\visual2017\_Algorithm_MineTest\BaekJoon_210115_도미노(SCC)\Debug\ConsoleApplication1_Test.exe
