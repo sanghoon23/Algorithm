@@ -1,0 +1,3 @@
+﻿  ConsoleApplication1_Test.cpp
+d:\visual2017\_algorithm_minetest\baekjoon_210126_외판원순회\consoleapplication1_test\consoleapplication1_test.cpp(65): warning C4334: '<<': 32비트 시프트의 결과가 암시적으로 64비트로 변환됩니다. 64비트 시프트를 사용하시겠습니까?
+  ConsoleApplication1_Test.vcxproj -> D:\visual2017\_Algorithm_MineTest\BaekJoon_210126_외판원순회\Debug\ConsoleApplication1_Test.exe
