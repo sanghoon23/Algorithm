@@ -1,0 +1,46 @@
+﻿  ConsoleApplication1_Test.cpp
+d:\visual2017\_algorithm_minetest\baekjoon_210604_달빛여우\consoleapplication1_test\consoleapplication1_test.cpp(28): warning C4244: '인수': 'double'에서 'const _Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=__int64
+          ]
+d:\visual2017\_algorithm_minetest\baekjoon_210604_달빛여우\consoleapplication1_test\consoleapplication1_test.cpp(52): warning C4244: '인수': 'double'에서 'const _Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=__int64
+          ]
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\utility(173): warning C4244: '초기화 중': '__int64'에서 '_Ty2'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty2=int
+          ]
+  d:\visual2017\_algorithm_minetest\baekjoon_210604_달빛여우\consoleapplication1_test\consoleapplication1_test.cpp(24): note: 컴파일 중인 함수 템플릿 인스턴스화 'std::pair<__int64,int>::pair<__int64&,__int64&,0>(_Other1,_Other2) noexcept'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Other1=__int64 &,
+              _Other2=__int64 &
+          ]
+  d:\visual2017\_algorithm_minetest\baekjoon_210604_달빛여우\consoleapplication1_test\consoleapplication1_test.cpp(24): note: 컴파일 중인 함수 템플릿 인스턴스화 'std::pair<__int64,int>::pair<__int64&,__int64&,0>(_Other1,_Other2) noexcept'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Other1=__int64 &,
+              _Other2=__int64 &
+          ]
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\utility(172): warning C4244: '초기화 중': '__int64'에서 '_Ty1'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty1=int
+          ]
+  d:\visual2017\_algorithm_minetest\baekjoon_210604_달빛여우\consoleapplication1_test\consoleapplication1_test.cpp(72): note: 컴파일 중인 함수 템플릿 인스턴스화 'std::pair<int,int>::pair<__int64&,bool,0>(_Other1,_Other2 &&) noexcept'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Other1=__int64 &,
+              _Other2=bool
+          ]
+  d:\visual2017\_algorithm_minetest\baekjoon_210604_달빛여우\consoleapplication1_test\consoleapplication1_test.cpp(72): note: 컴파일 중인 함수 템플릿 인스턴스화 'std::pair<int,int>::pair<__int64&,bool,0>(_Other1,_Other2 &&) noexcept'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Other1=__int64 &,
+              _Other2=bool
+          ]
+  ConsoleApplication1_Test.vcxproj -> D:\visual2017\_Algorithm_MineTest\BaekJoon_210604_달빛여우\Debug\ConsoleApplication1_Test.exe
